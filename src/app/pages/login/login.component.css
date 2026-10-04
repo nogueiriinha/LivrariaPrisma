@@ -1,19 +1,40 @@
-*{
-    margin: 0;
+* {
+margin: 0px;
 }
 
-.divLogin{
-
-    background-color: rgb(235, 168, 168);
-    height: 800px;
-    width: 400px;
-
+body {
+    background-color: #dedede;
+    font-family: Arial, sans-serif;
 }
 
-.divTotal{
+.divTotal {
     display: flex;
     justify-content: center;
     justify-items: center;
     padding: 60px;
+    gap: 30px;
+
+}
+
+
+
+.divLogin {
+
+    background-color: rgb(235, 168, 168);
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.buttonLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 
 }
