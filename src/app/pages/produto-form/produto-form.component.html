@@ -1,1 +1,28 @@
-<p>produto-form works!</p>
+<div class="container">
+    <h2>{{ modoEdicao ? 'Editar Livro' : 'Cadastrar Novo Livro' }}</h2>
+
+    <form [formGroup]="produtoForm" (ngSubmit)="salvar()">
+        <div class="form-group">
+            <label for="titulo">Título da Obra:</label>
+            <input id="titulo" formControlName="titulo" type="text" placeholder="Ex: Dom Quixote">
+        </div>
+
+        <div class="form-group">
+            <label for="autor">Autor:</label>
+            <input id="autor" formControlName="autor" type="text" placeholder="Ex: Miguel de Cervantes">
+        </div>
+
+        <div class="form-group">
+            <label for="preco">Preço (R$):</label>
+            <input id="preco" formControlName="preco" type="number" step="0.01">
+        </div>
+
+        <div class="acoes">
+            <!-- Botão fica desabilitado se os campos obrigatórios estiverem vazios -->
+            <button type="submit" [disabled]="produtoForm.invalid">
+                {{ modoEdicao ? 'Salvar Alterações' : 'Cadastrar' }}
+            </button>
+            <button type="button" (click)="cancelar()">Cancelar</button>
+        </div>
+    </form>
+</div>

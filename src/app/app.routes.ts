@@ -11,7 +11,7 @@ export const routes: Routes = [
     { path: 'sobre', component: SobreComponent },
     { path: 'contato', component: ContatoComponent},
     { path: 'ajuda', component: AjudaComponent },
-    { path: 'produto-listagem', component: ProdutoListagemComponent},
-    { path: 'produto-form', component: ProdutoFormComponent},
-
+    { path: 'produtos', component: ProdutoListagemComponent},
+    { path: 'produtos/novo', component: ProdutoFormComponent},
+    { path: 'produtos/editar/:id', component: ProdutoFormComponent},
 ];
