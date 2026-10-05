@@ -1,1 +1,93 @@
-<p>tela-cadastro works!</p>
+<!DOCTYPE html>
+<html lang="PT-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width= , initial-scale=1.0">
+  <title>Tela de Cadastro</title>
+</head>
+
+<body>
+  <div class="cadastro">
+
+  <h1>Criar conta</h1>
+  <p>Preencha seus dados corretamente!</p>
+
+  <form (ngSubmit)="cadastrar()">
+
+    <label>Nome</label>
+    <input
+      type="text"
+      [(ngModel)]="nome"
+      name = "nome" placeholder="Digite seu nome" required>
+
+    <label>E-mail</label>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      placeholder="Digite seu e-mail"
+      required
+    >
+
+    <label>Telefone</label>
+    <input
+      type="tel"
+      [(ngModel)]="telefone"
+      name="telefone"
+      placeholder="(11) 99999-9999"
+      required
+    >
+
+    <label>Senha</label>
+
+    <div class="campo-senha">
+      <input
+        [type]="mostrarSenha ? 'text' : 'password'"
+        [(ngModel)]="senha"
+        name="senha"
+        placeholder="Digite sua senha"
+        required
+      >
+
+      <span
+        class="olho"
+        (click)="mostrarSenha = !mostrarSenha"
+      >
+        {{ mostrarSenha ? '🙈' : '👁' }}
+      </span>
+    </div>
+
+    <label>Confirmar senha</label>
+
+    <div class="campo-senha">
+      <input
+        [type]="mostrarConfirmarSenha ? 'text' : 'password'"
+        [(ngModel)]="confirmarSenha"
+        name="confirmarSenha"
+        placeholder="Digite a senha novamente"
+        required
+      >
+
+      <span
+        class="olho"
+        (click)="mostrarConfirmarSenha = !mostrarConfirmarSenha"
+      >
+        {{ mostrarConfirmarSenha ? '🙈' : '👁' }}
+      </span>
+    </div>
+
+    @if (mensagem) {
+      <p class="mensagem">{{ mensagem }}</p>
+    }
+
+    <button type="submit"> Criar conta </button>
+
+    <button type="button" (click)="voltar()"> Voltar </button>
+
+  </form>
+
+</div>
+</body>
+
+</html>
