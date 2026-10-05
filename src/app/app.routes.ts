@@ -6,7 +6,9 @@ import { SobreComponent } from './pages/sobre/sobre.component';
 import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'home', component: HomeComponent },
     { path: '', component: HomeComponent},
     { path: 'sobre', component: SobreComponent },
     { path: 'contato', component: ContatoComponent},
