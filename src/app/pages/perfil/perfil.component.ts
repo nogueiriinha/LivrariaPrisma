@@ -10,17 +10,22 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent {
 
-  nome = 'Thawan';
-  email = 'cliente@teste.com';
-  senha = '12345678';
+  usuario = {
+    name: 'Thawan',
+    email: 'cliente@teste.com',
+    password: '12345678'
+  };
+
+  mensagem = '';
 
   constructor(private router: Router) {}
 
-  salvar() {
+  salvarAlteracoes() {
     alert('Perfil atualizado com sucesso!');
+    this.router.navigate(['/']);
   }
 
-  excluir() {
+  excluirPerfil() {
     alert('Perfil excluído com sucesso!');
     this.router.navigate(['/login']);
   }
