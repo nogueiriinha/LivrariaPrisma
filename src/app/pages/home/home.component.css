@@ -137,6 +137,21 @@
     }
 }
 
+/*.content-container {
+ width: 80%;
+ margin: 50px auto 0;
+ text-align: left;
+}
+.content-container h1 {
+ font-size: 2rem;
+ margin-bottom: 1rem;
+}
+.content-container p {
+ font-size: 1.2rem;
+ color: #475569;
+}
+*/
+
 .input-simples,
 .input-submeter {
  width: 100%;
