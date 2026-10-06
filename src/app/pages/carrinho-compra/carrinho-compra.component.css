@@ -3,10 +3,12 @@
     width: 100%;
     height: auto;
     display: flex;
+    justify-content: center;
     flex-direction: column;
 
     .s1{
         display: flex;
+        justify-content: center;
         flex-direction: row;
         padding: 40px 40px;
     }
@@ -49,7 +51,7 @@
             border-radius: 30px;
             width: 130px;
             display: flex;
-            align-self: center;
+            align-self: flex-end;
         }
 
         > button:hover{
