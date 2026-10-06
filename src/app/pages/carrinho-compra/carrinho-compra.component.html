@@ -7,26 +7,32 @@
         <p>Os itens do seu carrinho não estão reservados. Finalize a compra para torná-los seus itens pessoais</p>
 
         <div class="produtos">
+            @for (livro of livros; track livro.nome) {
             <div class="informacao-produto">
-                <img src="/img/senhor-dos-aneis.jpg" alt="senhor-dos-aneis">
+                
+                <img [src]="livro.imagem" alt="">
                 <div class="informacao">
-                    <h1>{{ livro?.nome }}</h1>
+                    <h1>{{ livro.nome }}</h1>
                     <p></p>
                     <div class="contador">
                         <div>
-                            <img src="/img/mais-removebg-preview.png" alt="" (click)="aumentar()">
-                            <span>{{livro?.quantidade}}</span>
-                            <img src="/img/menos-removebg-preview.png" alt="" (click)="diminuir()" class="menos">
+                            <img src="/img/mais-removebg-preview.png" alt="" (click)="aumentar(livro)">
+                            <span>{{livro.quantidade}}</span>
+                            <img src="/img/menos-removebg-preview.png" alt="" (click)="diminuir(livro)" class="menos">
                         </div>
                     </div>
                 </div>
                 <div class="preco">
-                    <img src="/img/lixo.jpg" alt="" (click)="remover()">
-                    <p>{{ livro?.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+                    <img src="/img/lixo.jpg" alt="" (click)="remover(livro)">
+                    <p>{{ livro.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
                 </div>
             </div>
+        }
         </div>
+        <button>FINALIZAR</button>
     </div>
+
+    
 
 </main>
 
