@@ -8,7 +8,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './produto-form.component.html',
-  styleUrls: ['./produto-form.component.css'] // ou .scss
+  styleUrls: ['./produto-form.component.css']
 })
 export class ProdutoFormComponent implements OnInit {
   produtoForm: FormGroup;
