@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     if (email === 'admin@admin.com' && password === 'admin123') {
       const adminUser = { name: 'Administrador', email: email, password: password };
       localStorage.setItem('UsuarioLogado', JSON.stringify(adminUser));
-      this.router.navigate(['home']);
+      this.router.navigate(['produtos']);
       return;
     }
 
