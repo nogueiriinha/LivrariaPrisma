@@ -17,41 +17,23 @@
     <form (ngSubmit)="cadastrar()">
 
       <label>Nome</label>
-      <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome" required>
+      <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome">
 
       <label>E-mail</label>
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Digite o seu e-mail" required>
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu e-mail">
 
       <label>Telefone</label>
-      <input type="tel" [(ngModel)]="telefone" name="telefone" placeholder="(11) 99999-9999" required>
+      <input type="tel" [(ngModel)]="telefone" name="telefone" placeholder="Digite seu telefone">
 
       <label>Senha</label>
-
-      <div class="campo-senha">
-        <input
-          [type]="mostrarSenha ? 'text' : 'password'"
-          [(ngModel)]="senha"
-          name ="senha" placeholder= "Digite sua senha" required>
-
-        <span class="olho" (click)="mostrarSenha = !mostrarSenha">
-          {{ mostrarSenha ? '🙈' : '👁' }}
-        </span>
-      </div>
+      <input type="password" [(ngModel)]="senha" name="senha" placeholder="Digite sua senha">
 
       <label>Confirmar senha</label>
-
-      <div class="campo-senha">
-        <input [type]="mostrarConfirmarSenha ? 'text' : 'password'" 
-        [(ngModel)]="confirmarSenha"
-        name= "confirmarSenha" placeholder= "Digite a senha novamente" required>
-
-        <span class="olho" (click)="mostrarConfirmarSenha = !mostrarConfirmarSenha">
-          {{ mostrarConfirmarSenha ? '🙈' : '👁' }}
-        </span>
-      </div>
+      <input type="password" [(ngModel)]="confirmarSenha" name="confirmarSenha"
+        placeholder="Digite sua senha novamente">
 
       @if (mensagem) {
-        <p class="mensagem">{{ mensagem }}</p>
+      <p class="mensagem">{{ mensagem }}</p>
       }
 
       <button type="submit">Criar conta</button>
