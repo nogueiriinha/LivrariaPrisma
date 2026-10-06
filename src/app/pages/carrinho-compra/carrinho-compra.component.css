@@ -1,0 +1,152 @@
+    .pagina-carrinho{
+    background-color: #F0EFEF;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+
+    .s1{
+        display: flex;
+        flex-direction: row;
+        padding: 40px 40px;
+    }
+
+    .carrinho-produtos{
+        margin-right: 30px;
+
+        > h1{
+            font: 30px 'inter';
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        > h2{
+            font: 18px 'inter';
+            margin-bottom: 30px;
+            width: 56%;
+        }
+
+        > p{
+            font: 18px 'inter';
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+       > button{
+            align-items: center;
+            background-color: #000;
+            color: #fff;
+            border: 0px;
+            padding: 10px;
+        }
+    }
+
+
+    .produto{
+        background-color: #D9D9D9;
+        height: 200px;
+        width: 100%;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .informacao-produto{
+        display: flex;
+        flex-direction: row;
+        background-color: #fff;
+        height: 300px;
+        width: 85%;
+        border-radius: 20px;
+        margin-bottom: 10px;
+        
+        > img{
+            width: 30%;
+            height: 270px;
+            border-radius: 20px;
+            padding: 15px;
+        }
+
+        > img:hover{
+            cursor: pointer;
+        }
+    }
+
+    .informacao{
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0px;  
+        width: 47%;
+        align-items: center;
+
+        > h1{
+            width: 300px;
+            font: 18px 'inter';
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        > p{
+            font: 15px 'inter';
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    }
+    
+    .contador{
+        background-color: #D9D9D9;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 45px;
+
+        > div{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            width: 94%;
+            height: 70%;
+            gap: 5px;
+            
+            
+            > img{
+                height: 15px;
+                width: 22px;
+            }
+
+            > img:hover{
+                cursor: pointer;
+            }
+
+            > p{
+                font-size: 18px;
+            }
+        }
+        }  
+
+        
+        
+    }
+
+    .preco{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 160px;
+        margin-left: 20px;
+        padding: 10px 0px;
+        align-items: flex-end;
+    
+        > img{
+            height: 25px;
+            cursor: pointer;
+        }
+
+        > p{
+            font: 16px 'inter'
+        }
+    }
