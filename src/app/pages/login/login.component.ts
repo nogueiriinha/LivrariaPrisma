@@ -55,26 +55,21 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('Form submit enviado')
-
     const { email, password } = this.form.value;
-    console.log('Email digitado:', email);
-    console.log('Senha digitada:', password);
 
     if (!email || !password) {
-      alert('Preencher o email e a senha');
+      alert('Preenche o email e a senha, mano!');
+      return;
+    }
+
+    if (email === 'admin@admin.com' && password === 'admin123') {
+      const adminUser = { name: 'Administrador', email: email, password: password };
+      localStorage.setItem('UsuarioLogado', JSON.stringify(adminUser));
+      this.router.navigate(['home']);
       return;
     }
 
     if (this.isLoginMode) {
-      if (email === 'admin@admin.com' && password === 'admin123') {
-        const adminUser = { name: 'Administrador', email: email, password: password };
-        localStorage.setItem('UsuarioLogado', JSON.stringify(adminUser));
-        console.log('Login de Administrador efetuado com sucesso!');
-        this.router.navigate(['home']);
-        return;
-      }
-
       const usuarios = this.getUsuarios();
       const usuario = usuarios.find(u => u.email === email && u.password === password);
 
@@ -85,23 +80,9 @@ export class LoginComponent implements OnInit {
         alert('Email ou senha incorretos!');
       }
     } else {
-      const usuarios = this.getUsuarios();
-      const usuarioJaExiste = usuarios.some(u => u.email === email);
-      if (usuarioJaExiste) {
-        alert('Este email ja existe');
-        return;
-      }
 
-      const nomeGerado = email.split('@')[0];
-      const novoUsuario: Usuario = { name: nomeGerado, email, password };
-      usuarios.push(novoUsuario);
-      this.salvaUsuarios(usuarios);
-      alert('Conta criada com sucesso!');
+      alert('O cadastro de novos utilizadores é gerido por outro módulo. Utiliza o login normal!');
       this.toggleMode();
-      this.form.reset();
-
     }
   }
-
-
 }
