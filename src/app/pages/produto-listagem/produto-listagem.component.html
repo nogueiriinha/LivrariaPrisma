@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Listagem de Produtos (Administrador)</h2>
+  
+  <button routerLink="/produtos/novo" class="btn-novo">Adicionar Novo Livro</button>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Preço</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let produto of produtos">
+        <td>{{ produto.id }}</td>
+        <td>{{ produto.titulo }}</td>
+        <td>{{ produto.autor }}</td>
+        <td>R$ {{ produto.preco | number:'1.2-2' }}</td>
+        <td>
+          <button (click)="editarProduto(produto.id)">Editar</button>
+          <button (click)="excluirProduto(produto.id)" class="btn-excluir">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
