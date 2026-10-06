@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
     if (email === 'cliente@teste.com' && password === '12345678') {
       const clienteUser = { name: 'Thawan', email: email, password: password };
       localStorage.setItem('UsuarioLogado', JSON.stringify(clienteUser));
-      this.router.navigate(['']);
+      this.router.navigate(['/perfil']);
       return;
     }
 
