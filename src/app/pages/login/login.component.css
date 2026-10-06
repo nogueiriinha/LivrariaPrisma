@@ -1,0 +1,114 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.divTotal {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-image: url('/img/menuLogin.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: center;
+    align-items: center;
+}
+
+.divLogin {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+   
+    min-height: 420px;
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 30px;
+}
+
+.divLogin h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+
+.divLogin input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+
+.divLogin div {
+    width: 100%;
+}
+
+.divLogin label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.divButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.buttonLogin {
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    background-color: #2e7d32;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+.buttonCadastro {
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding: 12px 20px;
+    background-color: #1976d2;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.fundoLogin {
+    height: 100%;
+    width: 100%;
+    align-content: center;
+}
