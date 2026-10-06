@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 interface Usuario {
 
@@ -12,7 +12,7 @@ interface Usuario {
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -46,8 +46,6 @@ export class LoginComponent implements OnInit {
   getUsuarios(): Usuario[] {
     const dados = localStorage.getItem('usuarios');
     return dados ? JSON.parse(dados) : [];
-
-
   }
 
   salvaUsuarios(Lista: Usuario[]): void {
@@ -58,7 +56,7 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.form.value;
 
     if (!email || !password) {
-      alert('Preenche o email e a senha, mano!');
+      alert('Preenche o email e a senha!');
       return;
     }
 
@@ -69,19 +67,26 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+    if (email === 'cliente@teste.com' && password === '12345678') {
+      const clienteUser = { name: 'Thawan', email: email, password: password };
+      localStorage.setItem('UsuarioLogado', JSON.stringify(clienteUser));
+      this.router.navigate(['']);
+      return;
+    }
+
     if (this.isLoginMode) {
       const usuarios = this.getUsuarios();
       const usuario = usuarios.find(u => u.email === email && u.password === password);
 
       if (usuario) {
         localStorage.setItem('UsuarioLogado', JSON.stringify(usuario));
-        this.router.navigate(['home']);
+        this.router.navigate(['']);
       } else {
         alert('Email ou senha incorretos!');
       }
     } else {
 
-      alert('O cadastro de novos utilizadores é gerido por outro módulo. Utiliza o login normal!');
+      alert('Para entrar, use o login padrão!');
       this.toggleMode();
     }
   }
