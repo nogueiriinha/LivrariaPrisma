@@ -1,1 +1,56 @@
-<p>perfil works!</p>
+<div class="perfil">
+
+  <h1>Meu Perfil</h1>
+
+  <p>Veja e altere seus dados.</p>
+
+  <form>
+
+    <label>Nome</label>
+    <input
+      type="text"
+      [(ngModel)]="usuario.name"
+      name="name"
+    >
+
+    <label>E-mail</label>
+    <input
+      type="email"
+      [(ngModel)]="usuario.email"
+      name="email"
+    >
+
+    <label>Senha</label>
+    <input
+      type="password"
+      [(ngModel)]="usuario.password"
+      name="password"
+    >
+
+    @if (mensagem) {
+      <p class="mensagem">{{ mensagem }}</p>
+    }
+
+    <button
+      type="button"
+      (click)="salvarAlteracoes()">
+      Salvar alterações
+    </button>
+
+    <button
+      type="button"
+      class="excluir"
+      (click)="excluirPerfil()">
+      Excluir perfil
+    </button>
+
+    <button
+      type="button"
+      class="voltar"
+      (click)="voltar()">
+      Voltar
+    </button>
+
+  </form>
+
+</div>
