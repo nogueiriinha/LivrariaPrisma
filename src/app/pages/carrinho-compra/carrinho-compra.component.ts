@@ -32,10 +32,24 @@ export class CarrinhoCompraComponent {
   }
 
   get total(){
-    return this.livros.reduce((soma, item) => soma + item.preco * item.quantidade, 0);
+    let soma = 0;
+
+  for (const item of this.livros) {
+    soma = soma + item.preco * item.quantidade;
+  }
+
+  return soma;
   }
 
   remover(livro:Livro){
-    this.livros = this.livros.filter((item) => item !== livro);
+    const novaLista = [];
+
+  for (const item of this.livros) {
+    if (item !== livro) {
+      novaLista.push(item);
+    }
+  }
+
+  this.livros = novaLista;
   }
 }
