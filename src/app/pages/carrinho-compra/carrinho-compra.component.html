@@ -1,35 +1,33 @@
+<div class="pagina-carrinho">
+
 <main class="s1">
     <div class="carrinho-produtos">
         <h1>SEU CARRINHO</h1>
-        <h2>TOTAL</h2>
+        <h2>TOTAL: {{ total | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</h2>
         <p>Os itens do seu carrinho não estão reservados. Finalize a compra para torná-los seus itens pessoais</p>
 
         <div class="produtos">
             <div class="informacao-produto">
-                <img src="" alt="">
+                <img src="/img/senhor-dos-aneis.jpg" alt="senhor-dos-aneis">
                 <div class="informacao">
-                    <h1></h1>
-                    <h1></h1>
+                    <h1>{{ livro?.nome }}</h1>
+                    <p></p>
                     <div class="contador">
                         <div>
-                            <img src="" alt="">
-                            <p></p>
-                            <img src="" alt="">
+                            <img src="/img/mais-removebg-preview.png" alt="" (click)="aumentar()">
+                            <span>{{livro?.quantidade}}</span>
+                            <img src="/img/menos-removebg-preview.png" alt="" (click)="diminuir()" class="menos">
                         </div>
                     </div>
                 </div>
                 <div class="preco">
-                    <p>R$</p>
+                    <img src="/img/lixo.jpg" alt="" (click)="remover()">
+                    <p>{{ livro?.preco | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="finalizamento">
-        <div class="finalizar">
-            <div>
-                <link rel="stylesheet" href="">
-            </div>
-        </div>
-    </div>
 </main>
+
+</div>
