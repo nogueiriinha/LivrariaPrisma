@@ -1,0 +1,39 @@
+{
+    "clientes": [
+        {
+            "id": 1,
+            "cpf": "12345678910",
+            "nome": "Enzo",
+            "sobrenome": "Silva",
+            "dtNascimento": "2005-01-10",
+            "email": "enzo@email.com"
+        },
+        {
+            "id": 2,
+            "cpf": "12345678910",
+            "nome": "Ana",
+            "sobrenome": "Santos",
+            "dtNascimento": "2007-08-14",
+            "email": "ana@email.com"
+        }
+    ],
+
+    "produtos": [
+        {
+            "id": 1,
+            "qtd": 10,
+            "nome": "O Senhor dos Anéis",
+            "descricao": "Livro de fantasia",
+            "autor": "J.R.R. Tolkien",
+            "preco": 49.90
+        },
+        {
+            "id": 2,
+            "qtd": 5,
+            "nome": "Dom Quixote",
+            "descricao": "Livro de ficção",
+            "autor": "Miguel de Cervantes",
+            "preco": 39.90
+        }
+    ]
+}
