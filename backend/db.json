@@ -23,17 +23,22 @@
             "id": 1,
             "qtd": 10,
             "nome": "O Senhor dos Anéis",
-            "descricao": "Livro de fantasia",
             "autor": "J.R.R. Tolkien",
-            "preco": 49.90
+            "preco": 120.50
         },
         {
             "id": 2,
             "qtd": 5,
-            "nome": "Dom Quixote",
-            "descricao": "Livro de ficção",
-            "autor": "Miguel de Cervantes",
-            "preco": 39.90
+            "nome": "1984",
+            "autor": "George Orwell",
+            "preco": 45.90
+        },
+        {
+            "id": 3,
+            "qtd": 8,
+            "nome": "Dom Casmurro",
+            "autor": "Machado de Assis",
+            "preco": 35.00
         }
     ]
 }
