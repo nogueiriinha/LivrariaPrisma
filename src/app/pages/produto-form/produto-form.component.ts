@@ -1,64 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Produto } from '../../model/produto';
+import { ProdutoService } from '../../services/produto.service';
 
 @Component({
   selector: 'app-produto-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './produto-form.component.html',
-  styleUrls: ['./produto-form.component.css']
+  styleUrl: './produto-form.component.css'
 })
 export class ProdutoFormComponent implements OnInit {
-  produtoForm: FormGroup;
-  produtoId: string | null = null;
-  modoEdicao: boolean = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-    this.produtoForm = this.fb.group({
-      titulo: ['', Validators.required],
-      autor: ['', Validators.required],
-      preco: ['', [Validators.required, Validators.min(0)]]
-    });
-  }
+  produto: Produto = {} as Produto;
+  
+  private service = inject(ProdutoService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+  produtoId: string | null = this.route.snapshot.paramMap.get('id');
 
   ngOnInit(): void {
-    this.produtoId = this.route.snapshot.paramMap.get('id');
-    
     if (this.produtoId) {
-      this.modoEdicao = true;
-      this.carregarProdutoParaEdicao(this.produtoId);
+      this.service.buscarPorId(this.produtoId).subscribe({
+        next: (produto) => {
+          this.produto = produto;
+        },
+        error: () => alert('Produto não encontrado.')
+      });
     }
   }
 
-  carregarProdutoParaEdicao(id: string): void {
-    console.log(`A carregar os dados do livro ID: ${id}...`);
-    
-    this.produtoForm.patchValue({
-      titulo: 'Livro Carregado da Base de Dados (Mock)',
-      autor: 'Autor Desconhecido',
-      preco: 99.90
-    });
-  }
-
   salvar(): void {
-    if (this.produtoForm.valid) {
-      const dadosSalvos = this.produtoForm.value;
-      
-      if (this.modoEdicao) {
-        console.log(`Produto atualizado ${this.produtoId}:`, dadosSalvos);
-        alert('Produto atualizado com sucesso!');
-      } else {
-        console.log('Novo produto criado:', dadosSalvos);
-        alert('Novo produto criado com sucesso!');
-      }
-      
-      this.router.navigate(['/produtos']);
+    if (this.produtoId) {
+      // Alteração
+      this.service.editar(this.produto).subscribe({
+        next: (produto) => {
+          this.produto = produto;
+          alert(`Livro "${this.produto.titulo}" atualizado com sucesso!`);
+          this.router.navigate(['/produtos']);
+        }
+      });
+    } else {
+      // Inclusão
+      this.service.incluir(this.produto).subscribe({
+        next: (produto) => {
+          this.produto = produto;
+          alert(`Livro "${this.produto.titulo}" cadastrado com sucesso!`);
+          this.router.navigate(['/produtos']);
+        }
+      });
     }
   }
 

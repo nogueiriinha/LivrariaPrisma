@@ -1,36 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-
-interface Produto {
-  id: number;
-  titulo: string;
-  autor: string;
-  preco: number;
-}
+import { Produto } from '../../model/produto';
+import { ProdutoService } from '../../services/produto.service';
 
 @Component({
   selector: 'app-produto-listagem',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './produto-listagem.component.html',
   styleUrl: './produto-listagem.component.css'
 })
-export class ProdutoListagemComponent {
-  produtos: Produto[] = [
-    { id: 1, titulo: 'O Senhor dos Anéis', autor: 'J.R.R. Tolkien', preco: 120.50 },
-    { id: 2, titulo: '1984', autor: 'George Orwell', preco: 45.90 },
-    { id: 3, titulo: 'Dom Casmurro', autor: 'Machado de Assis', preco: 35.00 }
-  ];
+export class ProdutoListagemComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  produtos: Produto[] = [];
 
-  editarProduto(id: number): void {
-    // Redireciona para a rota de edição passando o ID do produto
+  private service = inject(ProdutoService);
+  private router = inject(Router);
+
+  ngOnInit(): void {
+    this.carregarProdutos();
+  }
+
+  carregarProdutos(): void {
+    this.service.listar().subscribe({
+      next: (dados) => {
+        this.produtos = dados;
+      },
+      error: () => alert('Erro ao carregar a lista de produtos.')
+    });
+  }
+
+  editarProduto(id: string): void {
     this.router.navigate(['/produtos/editar', id]);
   }
 
-  excluirProduto(id: number): void {
-    // Apenas protótipo visual, não apaga os dados
-    alert(`[Protótipo] O produto com ID ${id} seria excluído do banco de dados.`);
+  excluirProduto(id: string): void {
+    if (confirm('Tem certeza que deseja excluir este livro?')) {
+      this.service.excluir(id).subscribe({
+        next: () => {
+          // Atualiza a lista na tela após excluir no servidor
+          this.carregarProdutos();
+        },
+        error: () => alert('Erro ao excluir o produto.')
+      });
+    }
   }
 }
