@@ -1,28 +1,61 @@
-<div class="container">
-    <h2>{{ modoEdicao ? 'Editar Livro' : 'Cadastrar Novo Livro' }}</h2>
+<div class="content-container">
+  <h2>{{ produtoId ? 'Editar Livro' : 'Cadastrar Novo Livro' }}</h2>
 
-    <form [formGroup]="produtoForm" (ngSubmit)="salvar()">
-        <div class="form-group">
-            <label for="titulo">Título da Obra:</label>
-            <input id="titulo" formControlName="titulo" type="text" placeholder="Ex: Dom Quixote">
-        </div>
+  <form (ngSubmit)="salvar()" #form="ngForm">
+    <div class="form-group">
+      <label for="nome">Título da Obra:</label>
+      <input 
+        id="nome" 
+        name="nome" 
+        class="input-simples" 
+        type="text" 
+        placeholder="Ex: Dom Quixote" 
+        [(ngModel)]="produto.titulo" 
+        required>
+    </div>
 
-        <div class="form-group">
-            <label for="autor">Autor:</label>
-            <input id="autor" formControlName="autor" type="text" placeholder="Ex: Miguel de Cervantes">
-        </div>
+    <div class="form-group">
+      <label for="autor">Autor:</label>
+      <input 
+        id="autor" 
+        name="autor" 
+        class="input-simples" 
+        type="text" 
+        placeholder="Ex: Miguel de Cervantes" 
+        [(ngModel)]="produto.autor" 
+        required>
+    </div>
 
-        <div class="form-group">
-            <label for="preco">Preço (R$):</label>
-            <input id="preco" formControlName="preco" type="number" step="0.01">
-        </div>
+    <div class="form-group">
+      <label for="preco">Preço (R$):</label>
+      <input 
+        id="preco" 
+        name="preco" 
+        class="input-simples" 
+        type="number" 
+        step="0.01" 
+        [(ngModel)]="produto.preco" 
+        required>
+    </div>
 
-        <div class="acoes">
-            <!-- Botão fica desabilitado se os campos obrigatórios estiverem vazios -->
-            <button type="submit" [disabled]="produtoForm.invalid">
-                {{ modoEdicao ? 'Salvar Alterações' : 'Cadastrar' }}
-            </button>
-            <button type="button" (click)="cancelar()">Cancelar</button>
-        </div>
-    </form>
+    <div class="form-group">
+      <label for="qtd">Quantidade em Estoque:</label>
+      <input 
+        id="qtd" 
+        name="qtd" 
+        class="input-simples" 
+        type="number" 
+        [(ngModel)]="produto.qtd" 
+        required>
+    </div>
+
+    <div class="acoes">
+      <button type="submit" class="input-submeter" [disabled]="form.invalid">
+        {{ produtoId ? 'Salvar Alterações' : 'Cadastrar' }}
+      </button>
+      <button type="button" class="btn-cancelar" (click)="cancelar()">
+        Cancelar
+      </button>
+    </div>
+  </form>
 </div>
