@@ -20,24 +20,31 @@
   "produtos": [
     {
       "id": 1,
-      "qtd": 10,
       "titulo": "O Senhor dos Anéis",
       "autor": "J.R.R. Tolkien",
-      "preco": 120.5
+      "preco": 120.5,
+      "estoque": 125
     },
     {
       "id": 2,
-      "qtd": 5,
       "titulo": "1984",
       "autor": "George Orwell",
-      "preco": 45.9
+      "preco": 45.9,
+      "estoque": 12
     },
     {
       "id": 3,
-      "qtd": 8,
       "titulo": "Dom Casmurro",
       "autor": "Machado de Assis",
-      "preco": 35
+      "preco": 35,
+      "estoque": 200
+    },
+    {
+      "titulo": "Kamasutra",
+      "autor": "PAPAIZINHU",
+      "preco": 39.99,
+      "id": 4,
+      "estoque": 12
     }
   ]
 }

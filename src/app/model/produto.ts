@@ -1,6 +1,6 @@
 export interface Produto {
   id: string;
-  qtd: number;
+  estoque: number;
   titulo: string;
   autor: string;
   preco: number;

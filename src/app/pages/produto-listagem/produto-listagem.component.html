@@ -21,7 +21,7 @@
           <td>{{ produto.titulo }}</td>
           <td>{{ produto.autor }}</td>
           <td>R$ {{ produto.preco | number:'1.2-2' }}</td>
-          <td>{{ produto.qtd }}</td>
+          <td>{{ produto.estoque }}</td>
           <td>
             <button (click)="editarProduto(produto.id)">Editar</button>
             <button (click)="excluirProduto(produto.id)" class="btn-excluir">Excluir</button>
