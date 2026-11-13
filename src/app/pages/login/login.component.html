@@ -1,26 +1,45 @@
 <body>
-    <section class="divTotal">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="divLogin">
-                <h2>Login</h2>
+    <header class="prisma-header">
+        <span class="prisma-logo">Livraria Prisma</span>
+    </header>
 
-                <label for="email">Email: </label>
-                <input id="email" type="email" formControlName="email">
-
-                <label for="password">Senha: </label>
-                <input id="password" type="password" formControlName="password">
-
-                <div class="divButtons">
-
-                    <button type="submit" class="buttonLogin">
-                        Entrar
-                    </button>
-
-                    <button type="button" class="buttonCadastro" routerLink="/telaCadastro">
-                        Cadastrar-se
-                    </button>
-                </div>
+    <main class="prisma-container">
+        <div class="prisma-banner">
+            <div class="banner-content">
+                <h2>Seja bem-vindo!</h2>
+                <p>Sua estante virtual em um só lugar. Acesse sua conta para gerenciar seus livros favoritos, acompanhar
+                    pedidos e explorar novas histórias com total segurança.</p>
             </div>
-        </form>
-    </section>
+        </div>
+
+        <div class="prisma-login-box">
+            <h3>Identifique-se no sistema com:</h3>
+
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <label for="email">E-mail</label>
+                    <span class="input-hint">Digite seu e-mail para acessar sua conta</span>
+                    <input id="email" type="email" formControlName="email" placeholder="Seu e-mail cadastrado">
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input id="password" type="password" formControlName="password" placeholder="Digite sua senha">
+                </div>
+
+                <button type="submit" class="btn-continuar">
+                    Continuar
+                </button>
+            </form>
+
+            <div class="prisma-options">
+                <hr>
+                <p class="options-title">Outras opções:</p>
+
+                <button type="button" class="btn-option" routerLink="/telaCadastro">
+                    <span>Criar conta / Cadastrar-se</span>
+                </button>
+            </div>
+        </div>
+    </main>
 </body>
