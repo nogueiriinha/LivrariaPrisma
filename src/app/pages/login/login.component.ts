@@ -1,30 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
-interface Usuario {
-  name: string;
+interface Cliente {
+  id: number;
+  cpf: string;
+  nome: string;
+  sobrenome: string;
+  dtNascimento: string;
   email: string;
   password: string;
 }
 
 @Component({
   selector: 'app-login',
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
+  private apiUrl = 'http://localhost:3000/clientes';
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 
@@ -36,28 +44,25 @@ export class LoginComponent implements OnInit {
 
     const { email, password } = this.form.value;
 
-    if (email === 'admin@admin.com' && password === 'admin123') {
-      this.logarUsuario({ name: 'Administrador', email, password }, '/produtos');
-      return;
-    }
+    this.http.get<Cliente[]>(`${this.apiUrl}?email=${email}&password=${password}`).subscribe({
+      next: (clientes) => {
+        if (clientes.length > 0) {
+          const clienteEncontrado = clientes[0];
 
-    if (email === 'cliente@teste.com' && password === '12345678') {
-      this.logarUsuario({ name: 'Thawã', email, password }, '/perfil');
-      return;
-    }
+          const rota = email === 'admin@email.com' ? '/produtos' : '/perfil';
 
-    const dados = localStorage.getItem('usuarios');
-    const usuarios: Usuario[] = dados ? JSON.parse(dados) : [];
-    const usuarioEncontrado = usuarios.find(u => u.email === email && u.password === password);
-
-    if (usuarioEncontrado) {
-      this.logarUsuario(usuarioEncontrado, '');
-    } else {
-      alert('E-mail ou senha incorretos!');
-    }
+          this.logarUsuario(clienteEncontrado, rota);
+        } else {
+          alert('E-mail ou senha incorretos!');
+        }
+      },
+      error: () => {
+        alert('Erro ao conectar com o servidor (db.json).');
+      }
+    });
   }
 
-  private logarUsuario(usuario: Usuario, rota: string): void {
+  private logarUsuario(usuario: Cliente, rota: string): void {
     localStorage.setItem('UsuarioLogado', JSON.stringify(usuario));
     this.router.navigate([rota]);
   }

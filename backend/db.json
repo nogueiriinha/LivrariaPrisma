@@ -6,7 +6,8 @@
       "nome": "Enzo",
       "sobrenome": "Silva",
       "dtNascimento": "2005-01-10",
-      "email": "enzo@email.com"
+      "email": "enzo@email.com",
+      "password": "enzo123"
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "nome": "Ana",
       "sobrenome": "Santos",
       "dtNascimento": "2007-08-14",
-      "email": "ana@email.com"
+      "email": "ana@email.com",
+      "password": "ana123"
     }
   ],
   "produtos": [
