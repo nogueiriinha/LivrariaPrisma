@@ -1,7 +1,7 @@
 {
   "clientes": [
     {
-      "id": 1,
+      "id": "1",
       "cpf": "12345678910",
       "nome": "Enzo",
       "sobrenome": "Silva",
@@ -9,7 +9,7 @@
       "email": "enzo@email.com"
     },
     {
-      "id": 2,
+      "id": "2",
       "cpf": "12345678910",
       "nome": "Ana",
       "sobrenome": "Santos",
@@ -19,32 +19,36 @@
   ],
   "produtos": [
     {
-      "id": 1,
+      "id": "1",
       "titulo": "O Senhor dos Anéis",
       "autor": "J.R.R. Tolkien",
       "preco": 120.5,
-      "estoque": 125
+      "estoque": 125,
+      "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/81MZ8OjmQrL._SL1296_.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "titulo": "1984",
       "autor": "George Orwell",
       "preco": 45.9,
-      "estoque": 12
+      "estoque": 12,
+      "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61t0bwt1s3L._SL1000_.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "titulo": "Dom Casmurro",
       "autor": "Machado de Assis",
       "preco": 35,
-      "estoque": 200
+      "estoque": 200,
+      "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61x1ZHomWUL._SL1200_.jpg"
     },
     {
-      "titulo": "Kamasutra",
-      "autor": "PAPAIZINHU",
-      "preco": 39.99,
-      "id": 4,
-      "estoque": 12
+      "titulo": "A Arte de Imitar",
+      "autor": "David Murray",
+      "preco": 40,
+      "estoque": 111,
+      "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71wj6sL27RL._SL1500_.jpg",
+      "id": "Oh-4xExoPpY"
     }
   ]
 }
