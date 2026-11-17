@@ -5,72 +5,39 @@
             <p>Descubra histórias incríveis, clássicos inesquecíveis e grandes aventuras literárias.</p>
         </div>
     </section>
-<!-- Seção de Destaques em Carrossel -->
-  <section class="destaques-section">
+    <!-- Seção de Destaques em Carrossel -->
+    <section class="destaques-section">
     <div class="section-header">
       <h2>Destaques da Leitura</h2>
     </div>
 
+    <!-- Container do Carrossel com as Setas -->
     <div class="carrossel-container">
       <button class="carrossel-btn btn-prev" (click)="rolarCarrossel(-1)">&#10094;</button>
       
       <div class="carrossel-wrapper">
         <div class="livros-carrossel" #carrossel>
-            
-    <!-- Container principal do Carrossel -->
-    <div class="carrossel-wrapper">
-      <div class="livros-carrossel">
-        
-        <!-- Livro 1 -->
-        <div class="livro-card">
-          <div class="livro-imagem-wrapper">
-            <img src="img/senhor-dos-aneis.jpg" alt="Senhor Dos Anéis">
+          
+          <!-- Loop dinâmico com os livros vindos da API -->
+          <div class="livro-card" *ngFor="let livro of livros">
+            <div class="livro-imagem-wrapper">
+              
+              <!-- Certifique-se de que a propriedade no seu JSON se chama imagem, capa, etc. -->
+              <img [src]="livro.imagem || 'img/1984.jpg'" [alt]="livro.titulo">
+            </div>
+            <div class="livro-info">
+              <h3 class="livro-titulo">{{ livro.titulo }}</h3>
+              <p class="livro-autor">{{ livro.autor }}</p>
+              <span class="livro-preco">R$ {{ livro.preco }}</span>
+              <button class="btn-comprar">Comprar</button>
+            </div>
           </div>
-          <div class="livro-info">
-            <h3 class="livro-titulo">Senhor Dos Anéis</h3>
-            <p class="livro-autor">J.R.R. Tolkien</p>
 
-            <button class="btn-comprar">Comprar</button>
-          </div>
         </div>
-
-        <!-- Livro 2 -->
-        <div class="livro-card">
-          <div class="livro-imagem-wrapper">
-            <img src="img/1984.jpg" alt="1984">
-          </div>
-          <div class="livro-info">
-            <h3 class="livro-titulo">1984</h3>
-            <p class="livro-autor">George Orwell</p>
-            <button class="btn-comprar">Comprar</button>
-          </div>
-        </div>
-
-        <!-- Livro 3 -->
-        <div class="livro-card">
-          <div class="livro-imagem-wrapper">
-            <img src="img/dom-casmurro.jpg" alt="Dom Casmurro">
-          </div>
-          <div class="livro-info">
-            <h3 class="livro-titulo">Dom Casmurro</h3>
-            <p class="livro-autor">Machado de Assis</p>
-            <button class="btn-comprar">Comprar</button>
-          </div>
-        </div>
-
-        <!-- Livro 4 (Extra para demonstrar o carrossel deslizando) -->
-        <div class="livro-card">
-          <div class="livro-imagem-wrapper">
-            <img src="img/O-Pequeno-Principe.jpg" alt="O Pequeno Príncipe">
-          </div>
-          <div class="livro-info">
-            <h3 class="livro-titulo">O Pequeno Príncipe</h3>
-            <p class="livro-autor">Antoine de Saint-Exupéry</p>
-            <button class="btn-comprar">Comprar</button>
-          </div>
-        </div>
-
       </div>
+
+      <button class="carrossel-btn btn-next" (click)="rolarCarrossel(1)">&#10095;</button>
     </div>
   </section>
-</section>
+
+   
