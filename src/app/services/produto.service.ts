@@ -34,7 +34,7 @@ export class ProdutoService {
     return this.produtoHTTP.put<Produto>(`${this.API}/${produto.id}`, produto);
   }
 
-   getLivros(): Observable<any[]> {
+  getLivros(): Observable<any[]> {
     return this.produtoHTTP.get<any[]>(this.API);
   }
   

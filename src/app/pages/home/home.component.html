@@ -23,7 +23,7 @@
             <div class="livro-imagem-wrapper">
               
               <!-- Certifique-se de que a propriedade no seu JSON se chama imagem, capa, etc. -->
-              <img [src]="livro.imagem || 'img/1984.jpg'" [alt]="livro.titulo">
+              <img [src]="livro.imagem || 'assets/default-livro.jpg'" [alt]="livro.titulo">
             </div>
             <div class="livro-info">
               <h3 class="livro-titulo">{{ livro.titulo }}</h3>
