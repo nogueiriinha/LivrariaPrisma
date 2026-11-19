@@ -1,93 +1,69 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
-interface Usuario {
-
-  name: string;
+interface Cliente {
+  id: number;
+  cpf: string;
+  nome: string;
+  sobrenome: string;
+  dtNascimento: string;
   email: string;
-  password: string
+  password: string;
 }
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-
   form!: FormGroup;
-  isLoginMode = true;
+  private apiUrl = 'http://localhost:3000/clientes';
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
-    this.setupForm();
-  }
-
-  setupForm(): void {
-
     this.form = this.fb.group({
-      name: '',
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
-    })
-  }
-  toggleMode(): void {
-    this.isLoginMode = !this.isLoginMode;
-    this.form.reset();
-  }
-
-  getUsuarios(): Usuario[] {
-    const dados = localStorage.getItem('usuarios');
-    return dados ? JSON.parse(dados) : [];
-  }
-
-  salvaUsuarios(Lista: Usuario[]): void {
-    localStorage.setItem('usuarios', JSON.stringify(Lista))
+      password: ['', [Validators.required, Validators.minLength(4)]]
+    });
   }
 
   onSubmit(): void {
+    if (this.form.invalid) {
+      alert('Preencha o e-mail e a senha corretamente!');
+      return;
+    }
+
     const { email, password } = this.form.value;
 
-    if (!email || !password) {
-      alert('Preenche o email e a senha!');
-      return;
-    }
+    this.http.get<Cliente[]>(`${this.apiUrl}?email=${email}&password=${password}`).subscribe({
+      next: (clientes) => {
+        if (clientes.length > 0) {
+          const clienteEncontrado = clientes[0];
 
-    if (email === 'admin@admin.com' && password === 'admin123') {
-      const adminUser = { name: 'Administrador', email: email, password: password };
-      localStorage.setItem('UsuarioLogado', JSON.stringify(adminUser));
-      this.router.navigate(['/produtos']);
-      return;
-    }
+          const rota = email === 'admin@email.com' ? '/produtos' : '/perfil';
 
-    if (email === 'cliente@teste.com' && password === '12345678') {
-      const clienteUser = { name: 'Thawan', email: email, password: password };
-      localStorage.setItem('UsuarioLogado', JSON.stringify(clienteUser));
-      this.router.navigate(['/perfil']);
-      return;
-    }
-
-    if (this.isLoginMode) {
-      const usuarios = this.getUsuarios();
-      const usuario = usuarios.find(u => u.email === email && u.password === password);
-
-      if (usuario) {
-        localStorage.setItem('UsuarioLogado', JSON.stringify(usuario));
-        this.router.navigate(['']);
-      } else {
-        alert('Email ou senha incorretos!');
+          this.logarUsuario(clienteEncontrado, rota);
+        } else {
+          alert('E-mail ou senha incorretos!');
+        }
+      },
+      error: () => {
+        alert('Erro ao conectar com o servidor (db.json).');
       }
-    } else {
+    });
+  }
 
-      alert('Para entrar, use o login padrão!');
-      this.toggleMode();
-    }
+  private logarUsuario(usuario: Cliente, rota: string): void {
+    localStorage.setItem('UsuarioLogado', JSON.stringify(usuario));
+    this.router.navigate([rota]);
   }
 }
