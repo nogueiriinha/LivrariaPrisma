@@ -4,4 +4,5 @@ export interface Produto {
   titulo: string;
   autor: string;
   preco: number;
+  capa: string;
 }
