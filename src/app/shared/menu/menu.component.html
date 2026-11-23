@@ -1,18 +1,17 @@
 <nav class="navbar">
   <!-- Logotipo -->
-  <a href="#" class="navbar-brand">Prisma</a>
+  <a routerLink="/" class="navbar-brand">Prisma</a>
 
   <!-- Links centrais de navegação -->
   <ul class="navbar-nav">
-    <li><a href="#" class="active">Início</a></li>
-    <li><a href="#">Contato</a></li>
-    <li><a href="#">Sobre</a></li>
+    <li><a routerLink="/contato" routerLinkActive="active">Contato</a>
+    <li><a routerLink="/sobre" routerLinkActive="active">Sobre</a>
   </ul>
 
   <!-- Links de autenticação e carrinho à direita -->
   <div class="auth-links">
-    <a href="#">Cadastro</a>
-    <a href="#">Login</a>
-    <a href="#">Carrinho</a>
+    <a routerLink="/telaCadastro" routerLinkActive="active">Cadastro</a>
+    <a routerLink="/login" routerLinkActive="active">Login</a>
+    <a routerLink="/carrinho" routerLinkActive="active">Carrinho</a>
   </div>
 </nav>

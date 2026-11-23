@@ -1,43 +1,49 @@
-<section class="home-container">
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>Bem-vindo à Livraria Prisma</h1>
-            <p>Descubra histórias incríveis, clássicos inesquecíveis e grandes aventuras literárias.</p>
-        </div>
-    </section>
-    <!-- Seção de Destaques em Carrossel -->
-    <section class="destaques-section">
+<div class="home-container">
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h1>Bem-vindo à Livraria Prisma</h1>
+      <p>Descobre histórias incríveis, clássicos inesquecíveis e grandes aventuras literárias.</p>
+    </div>
+  </section>
+
+  <!-- Secção de Destaques em Carrossel -->
+  <section class="destaques-section">
     <div class="section-header">
       <h2>Destaques da Leitura</h2>
+      <span class="sub-titulo">Os favoritos dos nossos leitores</span>
     </div>
 
-    <!-- Container do Carrossel com as Setas -->
+    <!-- Carrossel com Setas -->
     <div class="carrossel-container">
-      <button class="carrossel-btn btn-prev" (click)="rolarCarrossel(-1)">&#10094;</button>
-      
+      <button type="button" class="carrossel-btn btn-prev" (click)="rolarCarrossel(-1)" aria-label="Anterior">
+        &#10094;
+      </button>
+
       <div class="carrossel-wrapper">
         <div class="livros-carrossel" #carrossel>
-          
-          <!-- Loop dinâmico com os livros vindos da API -->
-          <div class="livro-card" *ngFor="let livro of livros">
+
+         <div class="livro-card" *ngFor="let livro of livros">
             <div class="livro-imagem-wrapper">
-              
-              <!-- Certifique-se de que a propriedade no seu JSON se chama imagem, capa, etc. -->
-              <img [src]="livro.imagem || 'assets/default-livro.jpg'" [alt]="livro.titulo">
+              <img [src]="livro.capa" [alt]="livro.titulo">
             </div>
+
             <div class="livro-info">
               <h3 class="livro-titulo">{{ livro.titulo }}</h3>
               <p class="livro-autor">{{ livro.autor }}</p>
               <span class="livro-preco">R$ {{ livro.preco }}</span>
-              <button class="btn-comprar">Comprar</button>
+<button type="button" class="btn-comprar" (click)="irParaCarrinho(livro)">Comprar</button>
             </div>
           </div>
 
         </div>
       </div>
 
-      <button class="carrossel-btn btn-next" (click)="rolarCarrossel(1)">&#10095;</button>
+      <button type="button" class="carrossel-btn btn-next" (click)="rolarCarrossel(1)" aria-label="Seguinte">
+        &#10095;
+      </button>
     </div>
   </section>
 
-   
+</div>
