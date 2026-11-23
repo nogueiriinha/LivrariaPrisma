@@ -1,58 +1,68 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClienteService } from '../../services/cliente.service';
+import { Cliente } from '../../model/cliente';
 
 @Component({
-selector: 'app-tela-cadastro',
-standalone: true,
-imports: [FormsModule],
-templateUrl: './tela-cadastro.component.html',
-styleUrl: './tela-cadastro.component.css'
+  selector: 'app-tela-cadastro',
+  standalone: true,
+  imports: [FormsModule],
+  templateUrl: './tela-cadastro.component.html',
+  styleUrl: './tela-cadastro.component.css'
 })
 export class TelaCadastroComponent {
 
-nome = '';
-email = '';
-telefone = '';
-senha = '';
-confirmarSenha = '';
+  private router = inject(Router);
+  private clienteService = inject(ClienteService);
 
-mensagem = '';
+  nome = '';
+  email = '';
+  telefone = '';
+  senha = '';
+  confirmarSenha = '';
 
-constructor(private router: Router) {}
+  mensagem = '';
 
-cadastrar() {
+  constructor() {}
 
+  cadastrar() {
+    if (!this.nome || !this.email || !this.telefone ||
+        !this.senha || !this.confirmarSenha) {
+      this.mensagem = 'Preencha todos os campos.';
+      return;
+    }
 
-if (!this.nome || !this.email || !this.telefone ||
-    !this.senha || !this.confirmarSenha) {
+    if (this.senha !== this.confirmarSenha) {
+      this.mensagem = 'As senhas não coincidem.';
+      return;
+    }
 
-  this.mensagem = 'Preencha todos os campos.';
-  return;
-}
+    const novoCliente: Cliente = {
+      nome: this.nome,
+      telefone: this.telefone,
+      email: this.email,
+      senha: this.senha
+    };
 
-if (this.senha !== this.confirmarSenha) {
-  this.mensagem = 'As senhas não coincidem.';
-  return;
-}
+    this.clienteService.incluir(novoCliente).subscribe({
+      next: (clienteSalvo) => {
+        this.mensagem = 'Cadastro realizado com sucesso!';
 
-this.mensagem = 'Cadastro realizado com sucesso!';
+        localStorage.setItem('usuario', JSON.stringify(clienteSalvo));
 
-localStorage.setItem('usuario', JSON.stringify({
-  nome: this.nome,
-  email: this.email,
-  telefone: this.telefone,
-  senha: this.senha
-}));
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1000);
+      },
+      error: (erro) => {
+        console.error('Erro ao cadastrar cliente:', erro);
+        this.mensagem = 'Erro ao conectar com o servidor.';
+      }
+    });
+  }
 
-setTimeout(() => {
-  this.router.navigate(['/']);
-}, 1000);
-
-
-}
-
-voltar() {
-this.router.navigate(['/']);
-}
+  voltar() {
+    this.router.navigate(['/']);
+  }
 }

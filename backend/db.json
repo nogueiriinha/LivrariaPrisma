@@ -15,6 +15,13 @@
       "sobrenome": "Santos",
       "dtNascimento": "2007-08-14",
       "email": "ana@email.com"
+    },
+    {
+      "nome": "Thawã Luka Pereira",
+      "telefone": "11321312",
+      "email": "thawaluka06@gmail.com",
+      "senha": "142707",
+      "id": 3
     }
   ],
   "produtos": [
