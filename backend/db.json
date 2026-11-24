@@ -1,24 +1,4 @@
 {
-  "clientes": [
-    {
-      "id": "1",
-      "cpf": "12345678910",
-      "nome": "Enzo",
-      "sobrenome": "Silva",
-      "dtNascimento": "2005-01-10",
-      "email": "enzo@email.com",
-      "password": "enzo123"
-    },
-    {
-      "id": "2",
-      "cpf": "12345678910",
-      "nome": "Ana",
-      "sobrenome": "Santos",
-      "dtNascimento": "2007-08-14",
-      "email": "ana@email.com",
-      "password": "ana123"
-    }
-  ],
   "produtos": [
     {
       "id": "1",
@@ -51,6 +31,15 @@
       "estoque": 111,
       "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71wj6sL27RL._SL1500_.jpg",
       "id": "Oh-4xExoPpY"
+    }
+  ],
+  "clientes": [
+    {
+      "nome": "Thawã Luka Pereira",
+      "email": "pcd001",
+      "telefone": "214124",
+      "senha": "142707",
+      "id": 1
     }
   ]
 }
