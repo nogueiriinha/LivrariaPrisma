@@ -8,6 +8,7 @@
       <thead>
         <tr>
           <th>ID</th>
+          <th>Capa</th>
           <th>Título</th>
           <th>Autor</th>
           <th>Preço</th>
@@ -18,6 +19,16 @@
       <tbody>
         <tr *ngFor="let produto of produtos">
           <td>{{ produto.id }}</td>
+          <td>
+            <img 
+              *ngIf="produto.capa; else semCapa" 
+              [src]="produto.capa" 
+              [alt]="produto.titulo" 
+              class="capa-miniatura">
+            <ng-template #semCapa>
+              <div class="sem-capa">Sem capa</div>
+            </ng-template>
+          </td>
           <td>{{ produto.titulo }}</td>
           <td>{{ produto.autor }}</td>
           <td>R$ {{ produto.preco | number:'1.2-2' }}</td>

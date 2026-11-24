@@ -101,6 +101,15 @@ label {
     border-color: #cbd5e1;
 }
 
+.capa-miniatura {
+    width: 50px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    display: block;
+}
+
 @media (max-width: 700px) {
     .content-container {
         width: 90%;
