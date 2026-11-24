@@ -13,7 +13,7 @@
       "titulo": "1984",
       "autor": "George Orwell",
       "preco": 45.9,
-      "estoque": 1,
+      "estoque": 3,
       "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61t0bwt1s3L._SL1000_.jpg"
     },
     {
@@ -21,14 +21,14 @@
       "titulo": "Dom Casmurro",
       "autor": "Machado de Assis",
       "preco": 35,
-      "estoque": 200,
+      "estoque": 199,
       "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/61x1ZHomWUL._SL1200_.jpg"
     },
     {
       "titulo": "A Arte de Imitar",
       "autor": "David Murray",
       "preco": 40,
-      "estoque": 110,
+      "estoque": 107,
       "capa": "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71wj6sL27RL._SL1500_.jpg",
       "id": "Oh-4xExoPpY"
     }
