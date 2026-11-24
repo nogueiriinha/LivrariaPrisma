@@ -8,10 +8,10 @@ import { Produto } from '../model/produto';
 })
 export class ProdutoService {
 
-    private readonly API = 'http://localhost:3000/produtos';
-    private produtoHTTP = inject(HttpClient);
+  private readonly API = 'http://localhost:3000/produtos';
+  private produtoHTTP = inject(HttpClient);
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
   
   listar(): Observable<Produto[]> {
     return this.produtoHTTP.get<Produto[]>(this.API);
@@ -34,11 +34,7 @@ export class ProdutoService {
     return this.produtoHTTP.put<Produto>(`${this.API}/${produto.id}`, produto);
   }
 
-  produtoService = inject(ProdutoService);
-  
-  getLivros(): Observable<any[]> {
-    return this.produtoHTTP.get<any[]>(this.API);
+  getLivros(): Observable<Produto[]> {
+    return this.produtoHTTP.get<Produto[]>(this.API);
   }
-  
-  
-}  
+}
