@@ -40,6 +40,16 @@
       "telefone": "214124",
       "senha": "142707",
       "id": 1
+    },
+    {
+      "nome": "Thawã Luka Pereira",
+      "sobrenome": "Gonçalves",
+      "email": "thawaluka06@gmail.com",
+      "telefone": "118793241",
+      "cpf": "5123412124",
+      "dataNascimento": "2006-06-17",
+      "senha": "142707",
+      "id": 2
     }
   ]
 }

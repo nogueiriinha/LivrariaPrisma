@@ -17,8 +17,11 @@ export class TelaCadastroComponent {
   private clienteService = inject(ClienteService);
 
   nome = '';
+  sobrenome = '';
   email = '';
   telefone = '';
+  cpf = '';
+  dataNascimento = '';
   senha = '';
   confirmarSenha = '';
 
@@ -27,7 +30,8 @@ export class TelaCadastroComponent {
   constructor() {}
 
   cadastrar() {
-    if (!this.nome || !this.email || !this.telefone ||
+    if (!this.nome || !this.sobrenome || !this.email || !this.telefone ||
+        !this.cpf || !this.dataNascimento ||
         !this.senha || !this.confirmarSenha) {
       this.mensagem = 'Preencha todos os campos.';
       return;
@@ -40,8 +44,11 @@ export class TelaCadastroComponent {
 
     const novoCliente: Cliente = {
       nome: this.nome,
+      sobrenome: this.sobrenome,
       email: this.email,
       telefone: this.telefone,
+      cpf: this.cpf,
+      dataNascimento: this.dataNascimento,
       senha: this.senha
     };
 
