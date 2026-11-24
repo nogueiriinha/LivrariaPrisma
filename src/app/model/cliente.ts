@@ -1,10 +1,8 @@
 export interface Cliente {
-id?: number;
-nome: string;
-telefone: string;
-email: string;
-senha: string;
-cpf?: string;
-
+  id?: number;
+  nome: string;
+  email: string;
+  senha: string;
+  cpf?: string;
+  telefone?: string;
 }
-//interrogação é a não obrigação de que o campo precisa ser preenchido

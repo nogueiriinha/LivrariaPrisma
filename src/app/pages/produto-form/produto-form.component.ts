@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Produto } from '../../model/produto';
 import { ProdutoService } from '../../services/produto.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-produto-form',
   standalone: true,
-  imports: [FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './produto-form.component.html',
   styleUrl: './produto-form.component.css'
 })

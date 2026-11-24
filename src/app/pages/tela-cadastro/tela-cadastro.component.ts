@@ -40,15 +40,14 @@ export class TelaCadastroComponent {
 
     const novoCliente: Cliente = {
       nome: this.nome,
-      telefone: this.telefone,
       email: this.email,
+      telefone: this.telefone,
       senha: this.senha
     };
 
     this.clienteService.incluir(novoCliente).subscribe({
       next: (clienteSalvo) => {
         this.mensagem = 'Cadastro realizado com sucesso!';
-
         localStorage.setItem('usuario', JSON.stringify(clienteSalvo));
 
         setTimeout(() => {
