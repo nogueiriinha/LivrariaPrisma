@@ -1,69 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
-interface Cliente {
-  id: number;
-  cpf: string;
-  nome: string;
-  sobrenome: string;
-  dtNascimento: string;
-  email: string;
-  password: string;
-}
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink],
+  standalone: true,
+  imports: [FormsModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
-  form!: FormGroup;
-  private apiUrl = 'http://localhost:3000/clientes';
+export class LoginComponent {
+  private router = inject(Router);
+  private clienteService = inject(ClienteService);
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private http: HttpClient
-  ) { }
+  email = '';
+  password = '';
+  mensagem = '';
 
-  ngOnInit(): void {
-    this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4)]]
-    });
-  }
+  entrar(): void {
+    const email = this.email.trim().toLowerCase();
+    const password = this.password.trim();
 
-  onSubmit(): void {
-    if (this.form.invalid) {
-      alert('Preencha o e-mail e a senha corretamente!');
+    if (!email || !password) {
+      this.mensagem = 'Preencha o e-mail e a senha.';
       return;
     }
 
-    const { email, password } = this.form.value;
+    if (email === 'admin@admin' && password === 'admin') {
+      localStorage.setItem(
+        'usuario',
+        JSON.stringify({ nome: 'Administrador', email, role: 'admin' })
+      );
+      this.router.navigate(['/telaCadastro']);
+      return;
+    }
 
-    this.http.get<Cliente[]>(`${this.apiUrl}?email=${email}&password=${password}`).subscribe({
+    this.clienteService.login(email, password).subscribe({
       next: (clientes) => {
-        if (clientes.length > 0) {
-          const clienteEncontrado = clientes[0];
-
-          const rota = email === 'admin@email.com' ? '/produtos' : '/perfil';
-
-          this.logarUsuario(clienteEncontrado, rota);
-        } else {
-          alert('E-mail ou senha incorretos!');
+        if (!clientes.length) {
+          this.mensagem = 'E-mail ou senha inválidos.';
+          return;
         }
+
+        const { senha: _, ...clienteSessao } = clientes[0];
+        localStorage.setItem('usuario', JSON.stringify({ ...clienteSessao, role: 'cliente' }));
+        this.router.navigate(['/']);
       },
       error: () => {
-        alert('Erro ao conectar com o servidor (db.json).');
+        this.mensagem = 'Erro ao conectar com a API.';
       }
     });
-  }
-
-  private logarUsuario(usuario: Cliente, rota: string): void {
-    localStorage.setItem('UsuarioLogado', JSON.stringify(usuario));
-    this.router.navigate([rota]);
   }
 }
