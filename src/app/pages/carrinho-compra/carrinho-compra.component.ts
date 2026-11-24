@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+import { CarrinhoService } from '../../services/carrinho.service';
+import { ItemCarrinho } from '../../model/item-carrinho';
+import { ProdutoService } from '../../services/produto.service';
 
 interface Livro{
   id: number;
@@ -12,44 +15,49 @@ interface Livro{
 @Component({
   selector: 'app-carrinho-compra',
   imports: [CurrencyPipe],
+  standalone: true,
   templateUrl: './carrinho-compra.component.html',
   styleUrl: './carrinho-compra.component.css'
 })
 export class CarrinhoCompraComponent {
-  livros: Livro[] = [
-    {id: 1, nome:'O Senhor dos Anéis', preco: 120.50, quantidade: 1, imagem: 'img/senhor-dos-aneis.jpg'},
-    {id:2, nome:'1984', preco:45.90, quantidade: 1, imagem:'img/1984.jpg'},
-    {id:3, nome:'Dom Casmurro', preco: 35.00, quantidade: 1, imagem:'img/dom-casmurro.jpg'},
-  ];
-
-  aumentar(livro: Livro){
-    livro.quantidade++;
-  }
-
-  diminuir(livro:Livro){
-    if(livro.quantidade > 1)
-    livro.quantidade--;
-  }
-
-  get total(){
-    let soma = 0;
-
-  for (const item of this.livros) {
-    soma = soma + item.preco * item.quantidade;
-  }
-
-  return soma;
-  }
-
-  remover(livro:Livro){
-    const novaLista = [];
-
-  for (const item of this.livros) {
-    if (item !== livro) {
-      novaLista.push(item);
+  constructor(
+    public carrinho: CarrinhoService,
+    private produtoService: ProdutoService
+  ){}
+  
+  aumentar(item: ItemCarrinho){
+    if(item.quantidade < item.produto.estoque){
+      item.quantidade++;
+      this.carrinho.salvar();
     }
   }
 
-  this.livros = novaLista;
+  diminuir(item: ItemCarrinho){
+    if(item.quantidade > 1){
+      item.quantidade--;
+      this.carrinho.salvar();
+    }
   }
+
+  remover(item: ItemCarrinho){
+    this.carrinho.remover(item.produto.id);
+  }
+
+  get total(){
+    return this.carrinho.total();
+  }
+
+  finalizarCompra(){
+    for(const item of this.carrinho.itens){
+      const produto = item.produto;
+      produto.estoque = produto.estoque - item.quantidade;
+      this.produtoService.editar(produto).subscribe();
+    }
+
+    this.carrinho.limpar();
+    alert('Compra finalizada')
+  }
+
+  
 }
+

@@ -18,7 +18,7 @@ export class LoginComponent {
   password = '';
   mensagem = '';
 
-entrar(): void {
+  entrar(): void {
     const email = this.email.trim().toLowerCase();
     const password = this.password.trim();
 
@@ -43,7 +43,7 @@ entrar(): void {
           return;
         }
 
-        const { password: _, ...clienteSessao } = clientes[0];
+        const { senha: _, ...clienteSessao } = clientes[0];
         localStorage.setItem('usuario', JSON.stringify({ ...clienteSessao, role: 'cliente' }));
         this.router.navigate(['/']);
       },
