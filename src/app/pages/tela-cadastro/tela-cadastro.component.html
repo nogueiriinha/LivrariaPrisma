@@ -1,48 +1,33 @@
-<!DOCTYPE html>
-<html lang="PT-BR">
+<div class="cadastro">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tela de Cadastro</title>
-</head>
+  <h1>Crie a sua conta</h1>
+  <p>Preencha seus dados para criar a conta</p>
 
-<body>
+  <form (ngSubmit)="cadastrar()">
 
-  <div class="cadastro">
+    <label>Nome</label>
+    <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome">
 
-    <h1>Crie a sua conta</h1>
-    <p>Preencha seus dados para criar a conta</p>
+    <label>E-mail</label>
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu e-mail">
 
-    <form (ngSubmit)="cadastrar()">
+    <label>Telefone</label>
+    <input type="tel" [(ngModel)]="telefone" name="telefone" placeholder="Digite seu telefone">
 
-      <label>Nome</label>
-      <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome">
+    <label>Senha</label>
+    <input type="password" [(ngModel)]="senha" name="senha" placeholder="Digite sua senha">
 
-      <label>E-mail</label>
-      <input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu e-mail">
+    <label>Confirmar senha</label>
+    <input type="password" [(ngModel)]="confirmarSenha" name="confirmarSenha"
+      placeholder="Digite sua senha novamente">
 
-      <label>Telefone</label>
-      <input type="tel" [(ngModel)]="telefone" name="telefone" placeholder="Digite seu telefone">
-
-      <label>Senha</label>
-      <input type="password" [(ngModel)]="senha" name="senha" placeholder="Digite sua senha">
-
-      <label>Confirmar senha</label>
-      <input type="password" [(ngModel)]="confirmarSenha" name="confirmarSenha"
-        placeholder="Digite sua senha novamente">
-
-      @if (mensagem) {
+    @if (mensagem) {
       <p class="mensagem">{{ mensagem }}</p>
-      }
+    }
 
-      <button type="submit">Criar conta</button>
-      <button type="button" (click)="voltar()">Voltar</button>
+    <button type="submit">Criar conta</button>
+    <button type="button" (click)="voltar()">Voltar</button>
 
-    </form>
+  </form>
 
-  </div>
-
-</body>
-
-</html>
+</div>
