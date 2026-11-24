@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { CarrinhoService } from '../../services/carrinho.service';
 import { ItemCarrinho } from '../../model/item-carrinho';
@@ -24,7 +24,7 @@ export class CarrinhoCompraComponent {
     public carrinho: CarrinhoService,
     private produtoService: ProdutoService
   ){}
-
+  
   aumentar(item: ItemCarrinho){
     if(item.quantidade < item.produto.estoque){
       item.quantidade++;
@@ -57,4 +57,7 @@ export class CarrinhoCompraComponent {
     this.carrinho.limpar();
     alert('Compra finalizada')
   }
+
+  
 }
+

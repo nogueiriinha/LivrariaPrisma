@@ -33,8 +33,6 @@ export class ProdutoService {
   editar(produto: Produto): Observable<Produto> {
     return this.produtoHTTP.put<Produto>(`${this.API}/${produto.id}`, produto);
   }
-
-  produtoService = inject(ProdutoService);
   
   getLivros(): Observable<any[]> {
     return this.produtoHTTP.get<any[]>(this.API);

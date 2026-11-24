@@ -3,6 +3,8 @@ import { Router, RouterLink } from '@angular/router';
 import { ElementRef, ViewChild } from '@angular/core';
 import { ProdutoService } from '../../services/produto.service';
 import { CommonModule } from '@angular/common';
+import { CarrinhoService } from '../../services/carrinho.service';
+
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,11 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements OnInit{
  @ViewChild('carrossel', { static: false }) carrossel!: ElementRef;
   
-  livros: any[] = []; // Array que vai receber os livros da API
+  livros: any[] = []; 
+ 
  
 
-  constructor(private ProdutoService: ProdutoService, private router: Router) {}
+  constructor(private ProdutoService: ProdutoService, private router: Router, private carrinhoService: CarrinhoService) {}
 
   ngOnInit(): void {
     this.carregarLivros();
@@ -33,13 +36,15 @@ export class HomeComponent implements OnInit{
     });
   }
 
-  irParaCarrinho(livro: any) {
+  comprarLivro(livro: any) {
+    console.log('Clicou em comprar:', livro);
+    this.carrinhoService.adicionar(livro);
     this.router.navigate(['/carrinho']);
   }
 
   rolarCarrossel(direcao: number) {
     const elemento = this.carrossel.nativeElement;
-    const larguraItem = 265; // Tamanho do card + espaçamento (gap)
+    const larguraItem = 265; 
     
     elemento.scrollBy({
       left: direcao * larguraItem,

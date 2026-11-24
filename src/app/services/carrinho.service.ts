@@ -33,6 +33,7 @@ export class CarrinhoService {
     }
 
     this.salvar();
+    
   }
 
   remover(id: string): void {
@@ -73,4 +74,7 @@ export class CarrinhoService {
    salvar(): void{
     localStorage.setItem('carrinho', JSON.stringify(this.itens));
   }
+
+  
+  
 }
