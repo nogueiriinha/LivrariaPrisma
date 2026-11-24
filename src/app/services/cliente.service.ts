@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 export interface Cliente {
   id: string;
@@ -19,11 +19,18 @@ export class ClienteService {
   private http = inject(HttpClient);
   private readonly apiUrl = 'http://localhost:3000/clientes';
 
-  login(email: string, password: string): Observable<Cliente[]> {
-    const params = new HttpParams()
-      .set('email', email)
-      .set('password', password);
+ login(email: string, password: string): Observable<Cliente[]> {
+    const emailLimpo = email.trim().toLowerCase();
+    const senhaLimpa = password.trim();
 
-    return this.http.get<Cliente[]>(this.apiUrl, { params });
+    return this.http.get<Cliente[]>(this.apiUrl).pipe(
+      map((clientes) =>
+        clientes.filter(
+          (cliente) =>
+            cliente.email.trim().toLowerCase() === emailLimpo &&
+            cliente.password === senhaLimpa
+        )
+      )
+    );
   }
 }

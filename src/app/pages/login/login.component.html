@@ -15,17 +15,33 @@
         <div class="prisma-login-box">
             <h3>Identifique-se no sistema com:</h3>
 
-            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <form (ngSubmit)="entrar()">
                 <div class="input-group">
                     <label for="email">E-mail</label>
                     <span class="input-hint">Digite seu e-mail para acessar sua conta</span>
-                    <input id="email" type="email" formControlName="email" placeholder="Seu e-mail cadastrado">
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        [(ngModel)]="email"
+                        placeholder="Seu e-mail cadastrado"
+                    >
                 </div>
 
                 <div class="input-group">
                     <label for="password">Senha</label>
-                    <input id="password" type="password" formControlName="password" placeholder="Digite sua senha">
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        [(ngModel)]="password"
+                        placeholder="Digite sua senha"
+                    >
                 </div>
+
+                @if (mensagem) {
+                    <p class="mensagem-erro">{{ mensagem }}</p>
+                }
 
                 <button type="submit" class="btn-continuar">
                     Continuar
