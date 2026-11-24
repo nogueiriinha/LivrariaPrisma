@@ -1,17 +1,32 @@
 <nav class="navbar">
   <!-- Logotipo -->
-  <a routerLink="/" class="navbar-brand">Prisma</a>
+  <a [routerLink]="isAdmin() ? '/produtos' : '/'" class="navbar-brand">Prisma</a>
 
-  <!-- Links centrais de navegação -->
-  <ul class="navbar-nav">
-    <li><a routerLink="/contato" routerLinkActive="active">Contato</a>
-    <li><a routerLink="/sobre" routerLinkActive="active">Sobre</a>
-  </ul>
+  @if (isAdmin()) {
+    <!-- Menu exclusivo do Administrador -->
+    <ul class="navbar-nav">
+      <li><a routerLink="/produtos" routerLinkActive="active">Gerenciar Produtos</a></li>
+    </ul>
 
-  <!-- Links de autenticação e carrinho à direita -->
-  <div class="auth-links">
-    <a routerLink="/telaCadastro" routerLinkActive="active">Cadastro</a>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-    <a routerLink="/carrinho" routerLinkActive="active">Carrinho</a>
-  </div>
+    <div class="auth-links">
+      <a (click)="sair()" style="cursor: pointer;">Sair</a>
+    </div>
+
+  } @else {
+    <!-- Menu normal para Visitantes e Clientes -->
+    <ul class="navbar-nav">
+      <li><a routerLink="/contato" routerLinkActive="active">Contato</a></li>
+      <li><a routerLink="/sobre" routerLinkActive="active">Sobre</a></li>
+    </ul>
+
+    <div class="auth-links">
+      @if (isCliente()) {
+        <a routerLink="/perfil" routerLinkActive="active">Meu Perfil</a>
+      } @else {
+        <a routerLink="/telaCadastro" routerLinkActive="active">Cadastro</a>
+        <a routerLink="/login" routerLinkActive="active">Login</a>
+      }
+      <a routerLink="/carrinho" routerLinkActive="active">Carrinho</a>
+    </div>
+  }
 </nav>
