@@ -16,9 +16,9 @@
                     <p>{{ item.produto.autor }}</p>
                     <div class="contador">
                         <div>
-                            <img src="/img/menos-removebg-preview.png" alt="" (click)="aumentar(item)">
+                            <img src="/img/menos-removebg-preview.png" alt="" (click)="diminuir(item)">
                             <span>{{item.quantidade}}</span>
-                            <img src="/img/mais-removebg-preview.png" alt="" (click)="diminuir(item)" class="menos">
+                            <img src="/img/mais-removebg-preview.png" alt="" (click)="aumentar(item)" class="menos">
                         </div>
                     </div>
                 </div>
