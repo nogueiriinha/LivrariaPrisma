@@ -1,56 +1,57 @@
 <div class="perfil">
 
   <h1>Meu Perfil</h1>
+  <p>Visualize ou atualize os dados da sua conta</p>
 
-  <p>Veja e altere seus dados.</p>
-
-  <form>
-
-    <label>Nome</label>
-    <input
-      type="text"
-      [(ngModel)]="usuario.name"
-      name="name"
-    >
-
-    <label>E-mail</label>
-    <input
-      type="email"
-      [(ngModel)]="usuario.email"
-      name="email"
-    >
-
-    <label>Senha</label>
-    <input
-      type="password"
-      [(ngModel)]="usuario.password"
-      name="password"
-    >
+  <div class="card">
 
     @if (mensagem) {
       <p class="mensagem">{{ mensagem }}</p>
     }
 
-    <button
-      type="button"
-      (click)="salvarAlteracoes()">
-      Salvar alterações
-    </button>
+    @if (!editando) {
+      <div class="info">
+        <p><strong>Nome:</strong> {{ cliente.nome }} {{ cliente.sobrenome }}</p>
+        <p><strong>E-mail:</strong> {{ cliente.email }}</p>
+        <p><strong>Telefone:</strong> {{ cliente.telefone }}</p>
+        <p><strong>CPF:</strong> {{ cliente.cpf }}</p>
+        <p><strong>Data de Nascimento:</strong> {{ cliente.dataNascimento | date:'dd/MM/yyyy' }}</p>
+      </div>
 
-    <button
-      type="button"
-      class="excluir"
-      (click)="excluirPerfil()">
-      Excluir perfil
-    </button>
+      <button type="button" (click)="ativarEdicao()">Editar dados</button>
+      <button type="button" class="btn-secundario" (click)="sair()">Sair</button>
+      <button type="button" class="btn-excluir" (click)="excluirConta()">Excluir conta</button>
 
-    <button
-      type="button"
-      class="voltar"
-      (click)="voltar()">
-      Voltar
-    </button>
+    } @else {
+      <form (ngSubmit)="salvar()">
 
-  </form>
+        <label>Nome</label>
+        <input type="text" [(ngModel)]="cliente.nome" name="nome">
+
+        <label>Sobrenome</label>
+        <input type="text" [(ngModel)]="cliente.sobrenome" name="sobrenome">
+
+        <label>E-mail</label>
+        <input type="email" [(ngModel)]="cliente.email" name="email">
+
+        <label>Telefone</label>
+        <input type="tel" [(ngModel)]="cliente.telefone" name="telefone">
+
+        <label>CPF</label>
+        <input type="text" [(ngModel)]="cliente.cpf" name="cpf" maxlength="14">
+
+        <label>Data de Nascimento</label>
+        <input type="date" [(ngModel)]="cliente.dataNascimento" name="dataNascimento">
+
+        <label>Senha</label>
+        <input type="password" [(ngModel)]="cliente.senha" name="senha">
+
+        <button type="submit">Salvar alterações</button>
+        <button type="button" class="btn-secundario" (click)="cancelar()">Cancelar</button>
+
+      </form>
+    }
+
+  </div>
 
 </div>

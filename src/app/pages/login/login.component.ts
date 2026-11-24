@@ -30,9 +30,9 @@ export class LoginComponent {
     if (email === 'admin@admin' && password === 'admin') {
       localStorage.setItem(
         'usuario',
-        JSON.stringify({ nome: 'Administrador', email, role: 'admin' })
+        JSON.stringify({ nome: 'Administrador', email })
       );
-      this.router.navigate(['/telaCadastro']);
+      this.router.navigate(['/produtos']);
       return;
     }
 
@@ -44,7 +44,7 @@ export class LoginComponent {
         }
 
         const { senha: _, ...clienteSessao } = clientes[0];
-        localStorage.setItem('usuario', JSON.stringify({ ...clienteSessao, role: 'cliente' }));
+        localStorage.setItem('usuario', JSON.stringify(clienteSessao));
         this.router.navigate(['/']);
       },
       error: () => {
