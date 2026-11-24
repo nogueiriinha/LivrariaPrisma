@@ -34,6 +34,8 @@ export class ClienteService {
     return this.clienteHTTP.put<Cliente>(`${this.API}/${cliente.id}`, cliente);
   }
 
+  
+  
   login(email: string, senha: string): Observable<Cliente[]> {
     return this.clienteHTTP.get<Cliente[]>(`${this.API}?email=${email}&senha=${senha}`);
   }
