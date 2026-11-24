@@ -1,33 +1,33 @@
 <div class="cadastro">
 
-  <h1>Crie a sua conta</h1>
-  <p>Preencha seus dados para criar a conta</p>
-<!-- Formulario -->
-  <form (ngSubmit)="cadastrar()">
+    <h1>Crie a sua conta</h1>
+    <p>Preencha seus dados para criar a conta</p>
 
-    <label>Nome</label>
-    <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome">
+    <form (ngSubmit)="cadastrar()">
 
-    <label>E-mail</label>
-    <input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu e-mail">
+      <label>Nome</label>
+      <input type="text" [(ngModel)]="nome" name="nome" placeholder="Digite seu nome">
 
-    <label>Telefone</label>
-    <input type="tel" [(ngModel)]="telefone" name="telefone" placeholder="Digite seu telefone">
+      <label>E-mail</label>
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Digite seu e-mail">
 
-    <label>Senha</label>
-    <input type="password" [(ngModel)]="senha" name="senha" placeholder="Digite sua senha">
+      <label>Telefone</label>
+      <input type="tel" [(ngModel)]="telefone" name="telefone" placeholder="Digite seu telefone">
 
-    <label>Confirmar senha</label>
-    <input type="password" [(ngModel)]="confirmarSenha" name="confirmarSenha"
-      placeholder="Digite sua senha novamente">
+      <label>Senha</label>
+      <input type="password" [(ngModel)]="senha" name="senha" placeholder="Digite sua senha">
 
-    @if (mensagem) {
+      <label>Confirmar senha</label>
+      <input type="password" [(ngModel)]="confirmarSenha" name="confirmarSenha"
+        placeholder="Digite sua senha novamente">
+
+      @if (mensagem) {
       <p class="mensagem">{{ mensagem }}</p>
-    }
+      }
 
-    <button type="submit">Criar conta</button>
-    <button type="button" (click)="voltar()">Voltar</button>
+      <button type="submit">Criar conta</button>
+      <button type="button" (click)="voltar()">Voltar</button>
 
-  </form>
+    </form>
 
-</div>
+  </div>

@@ -1,44 +1,109 @@
-.navbar {
-    padding: 16px 32px;
-    background-color: #ffffff;
-    color: #0055b8;
-    font-family: Arial, Helvetica, sans -serif;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+/* ==========================================
+   ESTILIZAÇÃO DO MENU / NAVBAR
+   ========================================== */
+
+nav, .navbar, .menu-container {
+  background-color: #6b21a8; /* Roxo vibrante */
+  color: #ffffff;
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
+/* Logotipo / Nome "Prisma" */
+nav a.logo, .navbar-brand, .menu-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff !important;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+/* Remove os marcadores (bolinhas) e alinha a lista na horizontal */
+nav ul, .navbar-nav, .menu-links {
+  list-style: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+/* Estilo geral para todos os links dentro do menu */
+nav a, .navbar-nav a, .menu-links a, .auth-links a {
+  color: #ffffff !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.navbar-nav {
+  list-style: none !important;
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 25px !important;
+  margin: 0 auto 0 40px !important; /* Cria um espaçamento maior à direita e aproxima da esquerda */
+  padding: 0 !important;
+}
+
+/* Efeito ao passar o rato (Hover) */
+nav a:hover, .navbar-nav a:hover, .menu-links a:hover {
+  opacity: 0.85;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Grupo de links à direita (Cadastro, Login, Carrinho) se estiverem num contentor separado */
+.auth-links, .menu-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Responsividade para telemóveis */
+@media (max-width: 768px) {
+  nav, .navbar, .menu-container {
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  nav ul, .navbar-nav, .menu-links {
+    flex-direction: column !important;
+    gap: 10px;
+  }
 }
 
-.navbar-esquerda,
-.navbar-list,
-.navbar-acoes {
-    display: flex;
-    align-items: center;
-}
+/* ==========================================
+   RESPONSIVIDADE DO MENU (MOBILE)
+   ========================================== */
+@media (max-width: 768px) {
+  .navbar, .menu-container {
+    padding: 15px 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
 
-.navbar-list {
-    gap: 28px;
-    margin: 0 0 0 35px;
-    padding: 0;
-    list-style: none;
-}
-
-.navbar-logo,
-.navbar a {
-    color: #0055b8;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.2px;
-    text-decoration: none;
-}
-
-.navbar-logo {
-    font-size: 16px;
-}
-
-.navbar-acoes {
-    gap: 24px;
+  .navbar-nav, .menu-links {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .navbar-nav a, .menu-links a {
+    width: 100%;
+    display: block;
+  }
 }
